@@ -4,6 +4,10 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.format.datetime.DateFormatter;
+import org.springframework.format.datetime.DateFormatterRegistrar;
+import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -36,5 +40,21 @@ public class AppWebConfiguration {
 	    messageSource.setDefaultEncoding("UTF-8");
 	    messageSource.setCacheSeconds(1);
 	    return messageSource;
+	}
+	
+	/*Criaremos então um novo método chamado mvcConversionService que retorna um objeto do tipo FormattingConversionService. 
+	 * Dentro deste novo método precisamos fazer duas coisas. A primeira delas é criar um objeto do tipo 
+	 * DefaultFormattingConversionService que será o responsável pelo serviço de conversão de formato. A segunda é criar 
+	 * um objeto do tipo DateFormatterRegistrar que fará o registro do formato de data usado para a conversão. Este segundo
+	 *  objeto espera receber outro objeto do tipo DateFormatter que será quem efetivamente guarda o padrão da data, que 
+	 *  neste caso será dd/MM/yyyy, dia/mẽs/ano.*/
+	@Bean
+	public FormattingConversionService mvcConversionService(){
+	    DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
+	    DateFormatterRegistrar formatterRegistrar = new DateFormatterRegistrar();
+	    formatterRegistrar.setFormatter(new DateFormatter("dd/MM/yyyy"));
+	    formatterRegistrar.registerFormatters(conversionService);
+
+	    return conversionService;
 	}
 }
