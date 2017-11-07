@@ -1,5 +1,7 @@
 package br.com.casadocodigo.loja.conf;
 
+
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -19,5 +21,5 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 	protected String[] getServletMappings() {
 		return new String[] {"/"};
 	}
-
+	
 }
