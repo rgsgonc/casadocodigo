@@ -8,7 +8,8 @@
 <title>Lista</title>
 </head>
 <body>
-<h1>Listagem</h1>
+	<h1>Listagem</h1>
+	<p>${sucesso}</p>
 	<table>
 		<tr>
 			<td>Título</td>
