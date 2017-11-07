@@ -1,7 +1,9 @@
 package br.com.casadocodigo.loja.conf;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -18,5 +20,21 @@ public class AppWebConfiguration {
 	    resolver.setPrefix("/WEB-INF/views/");
 	    resolver.setSuffix(".jsp");
 	    return resolver;
+	}
+	
+	
+	/*Na classe AppWebConfiguration criaremos um novo método que carregará nossos arquivos de mensagens. Este método 
+	 * se chama messageSource e retorna um objeto do tipo MessageSource. Dentro deste método criaremos um objeto do 
+	 * tipo ReloadableResourceBundleMessageSource que chamaremos de messageSource. Neste objeto, iremos definir três 
+	 * propriedades: setBaseName com o valor /WEB-INF/message que terá o nome base dos nossos resources. 
+	 * O setDefaultEncoding com o valor UTF-8 para evitar o problema de caracteres estranhos que já vimos outras vezes 
+	 * e o setCacheSeconds para que o Spring recarregue o arquivo de tempos em tempos com o valor 1.*/
+	@Bean
+	public MessageSource messageSource(){
+	    ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+	    messageSource.setBasename("/WEB-INF/messages");
+	    messageSource.setDefaultEncoding("UTF-8");
+	    messageSource.setCacheSeconds(1);
+	    return messageSource;
 	}
 }
