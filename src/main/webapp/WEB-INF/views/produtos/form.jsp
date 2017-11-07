@@ -16,14 +16,14 @@
 	algo como: commandName="produto". Dessa forma, nas tags de erros (form:errors) não precisaríamos colocar o prefixo 
 	produto.. Colocaríamos então só o nome do atributo. -->
 	<form:form action="${ s:mvcUrl('PC#gravar').build() }" method="post"
-		commandName="produto">
+		commandName="produto" enctype="multipart/form-data">
 		<div>
 			<label>Título</label>
 			<form:input path="titulo" />
 			<form:errors path="titulo" />
 		</div>
 		<div>
-			<label>descricao</label>
+			<label>Descrição</label>
 			<form:textarea rows="10" cols="20" path="descricao" />
 			<form:errors path="descricao" />
 		</div>
@@ -45,6 +45,10 @@
 					value="${tipoPreco}" />
 			</div>
 		</c:forEach>
+
+		<div>
+			<label>Sumário</label> <input name="sumario" type="file" />
+		</div>
 		<button type="submit">Cadastrar</button>
 	</form:form>
 </body>
