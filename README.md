@@ -12,6 +12,8 @@ Para iniciar um projeto spring MVC deve-se seguir os passos abaixo.
 
 3) Após a criação do projeto iremos abrir o eclipse, e importar o projeto MAVEN já existente.
 
+``` File > Import > Existing Maven Project > Ir até o diretório do projeto ```
+
 # URL's
 
 Cadastro de produtos: http://localhost:8080/casadocodigo/produtos/form
